@@ -28,7 +28,7 @@ const NavigationBar = () => {
           className="rounded-4xl h-full grow px-1 text-white placeholder-gray-500 focus:outline-none"
           placeholder="Search Keddit"
         />
-        <div className="text-white rounded-full w-10 h-full flex justify-center items-center text-xs hover:bg-gray-700 hover:cursor-pointer">
+        <div className="text-white rounded-full w-10 h-full flex justify-center items-center text-xs hover:bg-gray-400 hover:cursor-pointer">
           X
         </div>
       </div>
