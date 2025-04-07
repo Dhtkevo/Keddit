@@ -15,7 +15,7 @@ const Post = () => {
           </p>
         </div>
         <button className="bg-blue-700 py-1 px-3 text-white text-xs rounded-full hover:cursor-pointer hover:bg-blue-600">
-          Join
+          View
         </button>
       </div>
       <h2 className="text-gray-300 text-xl">*Post Title content goes here*</h2>
