@@ -2,7 +2,7 @@ import React from "react";
 
 const NavigationBar = () => {
   return (
-    <div className="bg-black h-16 border border-b-gray-50 flex justify-between items-center px-8 py-2">
+    <div className="bg-black h-16 border border-b-gray-700 flex justify-between items-center px-8 py-2">
       <div className="flex h-full w-28 hover:cursor-pointer">
         <div className="h-full w-14">
           <img
