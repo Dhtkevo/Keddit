@@ -2,7 +2,7 @@ import React from "react";
 
 const Post = () => {
   return (
-    <div className="border-b border-gray-800 h-fit flex flex-col py-1.5 px-4 gap-4 hover:cursor-pointer hover:shadow-md hover:shadow-gray-800 rounded-3xl">
+    <div className="border-b border-gray-800 h-fit flex flex-col py-1.5 px-4 gap-4 hover:shadow-md hover:shadow-gray-800 rounded-3xl">
       <div className="flex justify-between">
         <div className="w-fit flex items-center gap-2 hover:cursor-pointer">
           <img
@@ -11,7 +11,7 @@ const Post = () => {
             className="h-6 w-6 rounded-full"
           />
           <p className="text-gray-500 text-xs hover:text-blue-400">
-            k/*name_of_community*
+            *username_of_post_creator*
           </p>
         </div>
         <button className="bg-blue-700 py-1 px-3 text-white text-xs rounded-full hover:cursor-pointer hover:bg-blue-600">
