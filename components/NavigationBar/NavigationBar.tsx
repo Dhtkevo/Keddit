@@ -33,7 +33,7 @@ const NavigationBar = () => {
         </div>
       </div>
       <div className="text-gray-300 text-2xl flex items-center gap-6">
-        <i className="fa-brands fa-rocketchat hover:cursor-pointer"></i>
+        <i className="fa-solid fa-users hover:cursor-pointer"></i>
         <div className="flex gap-2 items-center hover:cursor-pointer">
           <i className="fa-solid fa-plus"></i>
           <p className="text-lg">Create</p>
