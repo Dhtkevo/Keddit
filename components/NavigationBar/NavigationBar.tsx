@@ -1,22 +1,28 @@
 import React from "react";
 
+import { Link } from "react-router";
+
 const NavigationBar = () => {
   return (
     <div className="bg-black h-16 border border-b-gray-700 flex justify-between items-center px-8 py-2 sticky top-0">
       <div className="flex h-full w-28 hover:cursor-pointer">
         <div className="h-full w-14">
-          <img
-            src="../../src/assets/Keddit_Logo_No_Text.png"
-            alt="Keddit Logo"
-            className="object-cover h-full w-full"
-          />
+          <Link to="/">
+            <img
+              src="../../src/assets/Keddit_Logo_No_Text.png"
+              alt="Keddit Logo"
+              className="object-cover h-full w-full"
+            />
+          </Link>
         </div>
         <div className="h-full w-14">
-          <img
-            src="../../src/assets/Keddit_Text.png"
-            alt="Keddit Logo Text"
-            className="object-cover h-full w-full"
-          />
+          <Link to="/">
+            <img
+              src="../../src/assets/Keddit_Text.png"
+              alt="Keddit Logo Text"
+              className="object-cover h-full w-full"
+            />
+          </Link>
         </div>
       </div>
 
@@ -33,18 +39,24 @@ const NavigationBar = () => {
         </div>
       </div>
       <div className="text-gray-300 text-2xl flex items-center gap-6">
-        <i className="fa-solid fa-users hover:cursor-pointer"></i>
+        <Link to="/discover">
+          <i className="fa-solid fa-users hover:cursor-pointer"></i>
+        </Link>
         <div className="flex gap-2 items-center hover:cursor-pointer">
-          <i className="fa-solid fa-plus"></i>
-          <p className="text-lg">Create</p>
+          <Link className="flex gap-2" to="/create/post">
+            <i className="fa-solid fa-plus"></i>
+            <p className="text-lg">Create</p>
+          </Link>
         </div>
         <i className="fa-solid fa-bell hover:cursor-pointer"></i>
         <div className="rounded-full h-max border border-gray-500 hover:cursor-pointer">
-          <img
-            src="../../src/assets/Keddit_Logo_Text.png"
-            alt="Profile Photo"
-            className="h-8 w-12 rounded-full object-cover"
-          />
+          <Link to="/profile">
+            <img
+              src="../../src/assets/Keddit_Logo_Text.png"
+              alt="Profile Photo"
+              className="h-8 w-12 rounded-full object-cover"
+            />
+          </Link>
         </div>
       </div>
     </div>

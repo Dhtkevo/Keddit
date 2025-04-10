@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Login = () => {
+  async function loginWithGithub() {
+    window.location.assign("http://localhost:3000/auth/github");
+  }
+
+  useEffect(() => {
+    fetch("http://localhost:3000/auth/current_user", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <div className="h-screen bg-black flex">
       <div className=" w-1/2">
@@ -14,7 +28,10 @@ const Login = () => {
         <h1 className="text-6xl font-bold mb-12 text-white">
           Here Now, Here Always
         </h1>
-        <button className="bg-white rounded-full px-12 py-2 flex items-center gap-2 hover:cursor-pointer hover:bg-gray-200">
+        <button
+          onClick={loginWithGithub}
+          className="bg-white rounded-full px-12 py-2 flex items-center gap-2 hover:cursor-pointer hover:bg-gray-200"
+        >
           <i className="text-lg fa-brands fa-github"></i>
           Sign in with GitHub
         </button>
