@@ -53,7 +53,7 @@ const UserIndex = () => {
   ));
 
   return (
-    <div className="h-screen w-full flex justify-center">
+    <div className="h-screen w-full flex justify-center pt-4">
       <div className="h-screen w-1/2 overflow-auto">
         <h1 className="text-7xl text-gray-300 text-center my-4">
           Discover Users

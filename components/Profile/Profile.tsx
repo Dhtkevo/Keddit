@@ -66,7 +66,7 @@ const Profile = () => {
   });
 
   return (
-    <div className="h-screen w-full flex justify-center">
+    <div className="h-screen w-full flex justify-center pt-4">
       <div className="h-screen w-1/2 overflow-auto">
         <ProfileHeader user={targetUser} />
         {targetUser.post.length > 0 ? (

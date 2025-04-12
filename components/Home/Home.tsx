@@ -38,7 +38,7 @@ const Home = () => {
   if (loading) return null;
 
   return (
-    <div className="h-screen w-screen bg-gray-900 flex flex-col gap-4 items-center">
+    <div className="h-screen w-screen bg-gray-900 flex flex-col gap-4 items-center pt-4">
       <h1 className="text-5xl text-gray-400">
         {user ? `${user.username}'s Feed` : "My Feed"}{" "}
       </h1>
@@ -49,7 +49,6 @@ const Home = () => {
         <h3 className="text-3xl/20 text-gray-200 font-bold">
           Create a post or follow some users to get things jumping!
         </h3>
-        )
       </div>
     </div>
   );

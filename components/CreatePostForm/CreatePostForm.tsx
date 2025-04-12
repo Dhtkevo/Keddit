@@ -53,7 +53,7 @@ const CreatePostForm = () => {
   if (loading) return null;
 
   return (
-    <div className="h-screen w-screen flex justify-center">
+    <div className="h-screen w-screen flex justify-center pt-4">
       <div className="h-full w-1/2">
         <h1 className="text-gray-400 text-center text-3xl mt-8 mb-8">
           Create Post
