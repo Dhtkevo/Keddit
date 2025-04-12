@@ -46,6 +46,7 @@ const UserIndex = () => {
   const displayUsers = allUsers.map((user) => (
     <UserCard
       key={user.id}
+      userId={user.id}
       username={user.username}
       avatarUrl={user.avatarUrl}
     />
