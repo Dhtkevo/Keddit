@@ -1,19 +1,7 @@
-import React, { useEffect } from "react";
-
 const Login = () => {
   async function loginWithGithub() {
     window.location.assign("http://localhost:3000/auth/github");
   }
-
-  useEffect(() => {
-    fetch("http://localhost:3000/auth/current_user", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error(error));
-  }, []);
 
   return (
     <div className="h-screen bg-black flex">
