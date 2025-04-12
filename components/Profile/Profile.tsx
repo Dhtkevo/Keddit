@@ -39,15 +39,37 @@ const Profile = () => {
 
   if (loading) return null;
 
+  const userPosts = user.post.map((post) => {
+    return (
+      <Post
+        key={post.id}
+        userPic={user.avatarUrl}
+        username={user.username}
+        title={post.title}
+        text={post.text}
+        upVotes={post.upVotes}
+        downVotes={post.downVotes}
+        commentsNum={post.comments.length}
+      />
+    );
+  });
+
   return (
     <div className="h-screen w-full flex justify-center">
       <div className="h-screen w-1/2 overflow-auto">
         <ProfileHeader user={user} />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {user.post.length > 0 ? (
+          userPosts
+        ) : (
+          <>
+            <h2 className="text-5xl/20 text-gray-200 font-bold text-center">
+              Nothing to see here...
+            </h2>
+            <h3 className="text-3xl/20 text-gray-200 font-bold">
+              Create a post or follow some users to get things jumping!
+            </h3>
+          </>
+        )}
       </div>
     </div>
   );

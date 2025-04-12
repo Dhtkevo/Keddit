@@ -49,6 +49,7 @@ const Home = () => {
         <h3 className="text-3xl/20 text-gray-200 font-bold">
           Create a post or follow some users to get things jumping!
         </h3>
+        )
       </div>
     </div>
   );
