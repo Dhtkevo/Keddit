@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 
 const UserIndex = () => {
   const { user, setUser } = useContext(AuthContext);
+  const [allUsers, setAllUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -33,10 +34,22 @@ const UserIndex = () => {
       }
     };
 
+    fetch("http://localhost:3000/users/")
+      .then((response) => response.json())
+      .then((data) => setAllUsers(data));
+
     getUser();
   }, []);
 
   if (loading) return null;
+
+  const displayUsers = allUsers.map((user) => (
+    <UserCard
+      key={user.id}
+      username={user.username}
+      avatarUrl={user.avatarUrl}
+    />
+  ));
 
   return (
     <div className="h-screen w-full flex justify-center">
@@ -44,16 +57,7 @@ const UserIndex = () => {
         <h1 className="text-7xl text-gray-300 text-center my-4">
           Discover Users
         </h1>
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
-        <UserCard />
+        {displayUsers}
       </div>
     </div>
   );
