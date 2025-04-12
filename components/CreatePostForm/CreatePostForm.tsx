@@ -4,8 +4,25 @@ import { useNavigate } from "react-router";
 
 const CreatePostForm = () => {
   const { user, setUser } = useContext(AuthContext);
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const handleCreatePost = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    const response = await fetch("http://localhost:3000/posts/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, text, userId: user.id }),
+    });
+    console.log(response);
+
+    navigate("/");
+  };
 
   useEffect(() => {
     const getUser = async () => {
@@ -53,6 +70,8 @@ const CreatePostForm = () => {
               minLength={5}
               required
               placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               className="bg-black text-gray-300 py-4 px-4 w-full rounded-2xl border border-gray-700"
             />
           </div>
@@ -62,9 +81,14 @@ const CreatePostForm = () => {
               placeholder="Body"
               required
               minLength={4}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
               className="resize-y w-full h-64 bg-black text-gray-300 p-4 rounded-2xl border border-gray-700"
             ></textarea>
-            <button className="rounded-full bg-blue-600 py-2 px-6 text-gray-100 hover:cursor-pointer hover:bg-blue-800 w-fit self-end">
+            <button
+              onClick={handleCreatePost}
+              className="rounded-full bg-blue-600 py-2 px-6 text-gray-100 hover:cursor-pointer hover:bg-blue-800 w-fit self-end"
+            >
               Post
             </button>
           </div>
