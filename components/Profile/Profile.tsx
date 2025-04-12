@@ -3,30 +3,34 @@ import React, { useContext, useEffect, useState } from "react";
 import ProfileHeader from "../Profile/ProfileHeader";
 import Post from "../Home/Post";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const Profile = () => {
   const { user, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
+  const [targetUser, setTargetUser] = useState(undefined);
+  const { userId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:3000/auth/current_user",
-          {
+        const [response, response2] = await Promise.all([
+          fetch("http://localhost:3000/auth/current_user", {
             credentials: "include",
-          }
-        );
+          }),
+          fetch("http://localhost:3000/users/" + userId),
+        ]);
 
         const data = await response.json();
+        const targetData = await response2.json();
 
         if (!response.ok) {
           throw new Error();
         }
 
         setUser(data);
+        setTargetUser(targetData);
         setLoading(false);
       } catch (err) {
         setUser(undefined);
@@ -38,13 +42,20 @@ const Profile = () => {
   }, []);
 
   if (loading) return null;
+  if (!targetUser) {
+    return (
+      <div className="text-gray-200 text-5xl text-center my-20">
+        Something went wrong. User not found.
+      </div>
+    );
+  }
 
-  const userPosts = user.post.map((post) => {
+  const userPosts = targetUser.post.map((post) => {
     return (
       <Post
         key={post.id}
-        userPic={user.avatarUrl}
-        username={user.username}
+        userPic={targetUser.avatarUrl}
+        username={targetUser.username}
         title={post.title}
         text={post.text}
         upVotes={post.upVotes}
@@ -57,8 +68,8 @@ const Profile = () => {
   return (
     <div className="h-screen w-full flex justify-center">
       <div className="h-screen w-1/2 overflow-auto">
-        <ProfileHeader user={user} />
-        {user.post.length > 0 ? (
+        <ProfileHeader user={targetUser} />
+        {targetUser.post.length > 0 ? (
           userPosts
         ) : (
           <>

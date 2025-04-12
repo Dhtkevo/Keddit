@@ -24,7 +24,7 @@ createRoot(document.getElementById("root")!).render(
         }
       />
       <Route
-        path="Profile"
+        path="Profile/:userId"
         element={
           <AuthProvider>
             <NavigationBar />

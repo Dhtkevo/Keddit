@@ -53,7 +53,7 @@ const NavigationBar = () => {
         </div>
         <i className="fa-solid fa-bell hover:cursor-pointer"></i>
         <div className="rounded-full h-max border border-gray-500 hover:cursor-pointer">
-          <Link to="/profile">
+          <Link to={user ? `/profile/${user.id}` : "/profile"}>
             <img
               src={
                 user ? user.avatarUrl : "../../src/assets/Keddit_Logo_Text.png"
