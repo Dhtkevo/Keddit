@@ -43,13 +43,12 @@ const Home = () => {
         {user ? `${user.username}'s Feed` : "My Feed"}{" "}
       </h1>
       <div className="h-full w-1/2 overflow-auto">
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <h2 className="text-5xl/20 text-gray-200 font-bold text-center">
+          Nothing to see here...
+        </h2>
+        <h3 className="text-3xl/20 text-gray-200 font-bold">
+          Create a post or follow some users to get things jumping!
+        </h3>
       </div>
     </div>
   );

@@ -19,7 +19,6 @@ const CreatePostForm = () => {
       },
       body: JSON.stringify({ title, text, userId: user.id }),
     });
-    console.log(response);
 
     navigate("/");
   };
