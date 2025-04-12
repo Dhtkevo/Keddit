@@ -1,9 +1,6 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import React from "react";
 
-const ProfileHeader = () => {
-  const { user } = useContext(AuthContext);
-
+const ProfileHeader = ({ user }) => {
   return (
     <div className="border-b border-gray-700 h-52 flex flex-col">
       <div className="flex items-center gap-4">
