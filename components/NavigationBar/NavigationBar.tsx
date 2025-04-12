@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Link } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
 
 const NavigationBar = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="bg-black h-16 border border-b-gray-700 flex justify-between items-center px-8 py-2 sticky top-0">
       <div className="flex h-full w-28 hover:cursor-pointer">
@@ -52,7 +55,9 @@ const NavigationBar = () => {
         <div className="rounded-full h-max border border-gray-500 hover:cursor-pointer">
           <Link to="/profile">
             <img
-              src="../../src/assets/Keddit_Logo_Text.png"
+              src={
+                user ? user.avatarUrl : "../../src/assets/Keddit_Logo_Text.png"
+              }
               alt="Profile Photo"
               className="h-8 w-12 rounded-full object-cover"
             />
