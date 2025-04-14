@@ -9,6 +9,7 @@ import UserIndex from "../components/UserIndex/UserIndex.tsx";
 import CreatePostForm from "../components/CreatePostForm/CreatePostForm.tsx";
 import Login from "../components/Login/Login.tsx";
 import AuthProvider from "../components/AuthProvider/AuthProvider.tsx";
+import PostPage from "../components/PostPage/PostPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -33,6 +34,15 @@ createRoot(document.getElementById("root")!).render(
         }
       />
       <Route
+        path="Posts/:postId"
+        element={
+          <AuthProvider>
+            <NavigationBar />
+            <PostPage />
+          </AuthProvider>
+        }
+      />
+      <Route
         path="Discover"
         element={
           <AuthProvider>
@@ -47,6 +57,15 @@ createRoot(document.getElementById("root")!).render(
           <AuthProvider>
             <NavigationBar />
             <CreatePostForm />
+          </AuthProvider>
+        }
+      />
+      <Route
+        path="Posts/:postId"
+        element={
+          <AuthProvider>
+            <NavigationBar />
+            <PostPage />
           </AuthProvider>
         }
       />
