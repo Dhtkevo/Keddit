@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate, useParams } from "react-router";
 import PostInfo from "./PostInfo";
+import CommentCard from "./CommentCard";
 
 const PostPage = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -51,8 +52,13 @@ const PostPage = () => {
 
   return (
     <div className="h-screen w-full flex justify-center pt-4">
-      <div className="h-screen w-1/2 overflow-auto border-fuchsia-400 border">
+      <div className="h-screen w-1/2 overflow-auto">
         <PostInfo />
+        <CommentCard />
+        <CommentCard />
+        <CommentCard />
+        <CommentCard />
+        <CommentCard />
       </div>
     </div>
   );

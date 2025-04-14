@@ -4,7 +4,7 @@ const PostInfo = () => {
   const [commentText, setCommentText] = useState("");
 
   return (
-    <div className="border border-blue-500">
+    <div className="">
       <div className="flex items-center gap-4 mb-8">
         <img
           src="../../src/assets/Keddit_Logo_Text.png"
