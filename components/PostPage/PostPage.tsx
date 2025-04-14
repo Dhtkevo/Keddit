@@ -53,7 +53,14 @@ const PostPage = () => {
   return (
     <div className="h-screen w-full flex justify-center pt-4">
       <div className="h-screen w-1/2 overflow-auto">
-        <PostInfo />
+        <PostInfo
+          title={targetPost.title}
+          username={targetPost.user.username}
+          avatarUrl={targetPost.user.avatarUrl}
+          votes={targetPost.upVotes - targetPost.downVotes}
+          commentsNum={targetPost.comments.length}
+          text={targetPost.text}
+        />
         <CommentCard />
         <CommentCard />
         <CommentCard />
