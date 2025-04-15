@@ -53,6 +53,7 @@ const Profile = () => {
   const userPosts = targetUser.post.map((post) => {
     return (
       <Post
+        postId={post.id}
         key={post.id}
         userPic={targetUser.avatarUrl}
         username={targetUser.username}
