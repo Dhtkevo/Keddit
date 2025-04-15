@@ -53,6 +53,7 @@ const PostPage = () => {
   }
   const allComments = targetPost.comments.map((comment) => (
     <CommentCard
+      userId={comment.user.id}
       text={comment.text}
       username={comment.user.username}
       avatar={comment.user.avatarUrl}

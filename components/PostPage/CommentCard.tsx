@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router";
 
-const CommentCard = ({ text, username, avatar }) => {
+const CommentCard = ({ userId, text, username, avatar }) => {
   return (
     <div className="rounded-2xl border border-gray-700 px-2 mb-2 pt-2">
       <div className="flex items-center gap-2 mb-4">
@@ -9,7 +10,12 @@ const CommentCard = ({ text, username, avatar }) => {
           alt="comment profile picture"
           className="h-8 w-8 rounded-full"
         />
-        <h4 className="text-gray-200">{username}</h4>
+        <Link
+          to={"/profile/" + userId}
+          className="text-gray-200 hover:text-blue-600 hover:cursor-pointer"
+        >
+          {username}
+        </Link>
       </div>
       <p className="text-gray-200 mb-4">{text}</p>
     </div>
