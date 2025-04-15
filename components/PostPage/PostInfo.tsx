@@ -1,7 +1,30 @@
 import React, { useState } from "react";
 
-const PostInfo = ({ title, username, avatarUrl, votes, commentsNum, text }) => {
+const PostInfo = ({
+  postId,
+  userId,
+  title,
+  username,
+  avatarUrl,
+  votes,
+  commentsNum,
+  text,
+}) => {
   const [commentText, setCommentText] = useState("");
+
+  const handleCreateComment = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (commentText.length > 0) {
+      await fetch("http://localhost:3000/posts/" + postId + "/comments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ commentText: commentText, userId: userId }),
+      });
+
+      setCommentText("");
+    }
+  };
 
   return (
     <div className="">
@@ -36,7 +59,10 @@ const PostInfo = ({ title, username, avatarUrl, votes, commentsNum, text }) => {
           className="py-3 px-3 w-full bg-black rounded-full border border-gray-700 placeholder-gray-400 text-gray-200"
           required
         />
-        <button className="rounded-full bg-blue-700 py-1.5 px-3 text-gray-200 mt-2 w-fit self-end mb-8">
+        <button
+          onClick={handleCreateComment}
+          className="rounded-full bg-blue-700 py-1.5 px-3 text-gray-200 mt-2 w-fit self-end mb-8 hover:bg-blue-600 hover:cursor-pointer"
+        >
           Comment
         </button>
       </div>

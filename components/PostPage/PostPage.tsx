@@ -25,6 +25,8 @@ const PostPage = () => {
         const data = await response.json();
         const targetData = await response2.json();
 
+        console.log(targetData);
+
         if (!response.ok) {
           throw new Error();
         }
@@ -49,11 +51,20 @@ const PostPage = () => {
       </div>
     );
   }
+  const allComments = targetPost.comments.map((comment) => (
+    <CommentCard
+      text={comment.text}
+      username={comment.user.username}
+      avatar={comment.user.avatarUrl}
+    />
+  ));
 
   return (
     <div className="h-screen w-full flex justify-center pt-4">
       <div className="h-screen w-1/2 overflow-auto">
         <PostInfo
+          postId={targetPost.id}
+          userId={targetPost.user.id}
           title={targetPost.title}
           username={targetPost.user.username}
           avatarUrl={targetPost.user.avatarUrl}
@@ -61,11 +72,7 @@ const PostPage = () => {
           commentsNum={targetPost.comments.length}
           text={targetPost.text}
         />
-        <CommentCard />
-        <CommentCard />
-        <CommentCard />
-        <CommentCard />
-        <CommentCard />
+        {allComments}
       </div>
     </div>
   );
