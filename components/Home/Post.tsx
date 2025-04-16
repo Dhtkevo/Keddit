@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
 
 const Post = ({
@@ -10,12 +10,26 @@ const Post = ({
   downVotes,
   commentsNum,
 }) => {
+  const [votes, setVotes] = useState(upVotes - downVotes);
+
   const handleUpvote = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     await fetch("http://localhost:3000/posts/" + postId + "/upvote", {
       method: "PUT",
     });
+
+    setVotes((prev) => prev + 1);
+  };
+
+  const handleDownvote = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    await fetch("http://localhost:3000/posts/" + postId + "/downvote", {
+      method: "PUT",
+    });
+
+    setVotes((prev) => prev - 1);
   };
 
   return (
@@ -48,8 +62,11 @@ const Post = ({
             onClick={handleUpvote}
             className="fa-solid fa-angle-up text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-green-400 p-2"
           ></i>
-          <p className="text-xs">{upVotes - downVotes}</p>
-          <i className="fa-solid fa-angle-down text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-red-400 p-2"></i>
+          <p className="text-xs">{votes}</p>
+          <i
+            onClick={handleDownvote}
+            className="fa-solid fa-angle-down text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-red-400 p-2"
+          ></i>
         </button>
 
         <Link

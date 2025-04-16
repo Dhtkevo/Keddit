@@ -11,6 +11,7 @@ const PostInfo = ({
   text,
 }) => {
   const [commentText, setCommentText] = useState("");
+  const [votesState, setVotesState] = useState(votes);
 
   const handleCreateComment = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -32,6 +33,18 @@ const PostInfo = ({
     await fetch("http://localhost:3000/posts/" + postId + "/upvote", {
       method: "PUT",
     });
+
+    setVotesState((prev) => prev + 1);
+  };
+
+  const handleDownvote = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    await fetch("http://localhost:3000/posts/" + postId + "/downvote", {
+      method: "PUT",
+    });
+
+    setVotesState((prev) => prev - 1);
   };
 
   return (
@@ -52,8 +65,11 @@ const PostInfo = ({
             onClick={handleUpvote}
             className="fa-solid fa-angle-up text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-green-400 py-1 px-2"
           ></i>
-          <p className="text-xs">{votes}</p>
-          <i className="fa-solid fa-angle-down text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-red-400 p-2"></i>
+          <p className="text-xs">{votesState}</p>
+          <i
+            onClick={handleDownvote}
+            className="fa-solid fa-angle-down text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-red-400 p-2"
+          ></i>
         </button>
         <button className="bg-gray-700 text-white flex gap-2 items-center rounded-full py-1.5 px-5 hover:cursor-pointer hover:bg-gray-500">
           <i className="fa-solid fa-comment"></i>
