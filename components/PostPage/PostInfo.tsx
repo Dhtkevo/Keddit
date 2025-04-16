@@ -26,6 +26,14 @@ const PostInfo = ({
     }
   };
 
+  const handleUpvote = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    await fetch("http://localhost:3000/posts/" + postId + "/upvote", {
+      method: "PUT",
+    });
+  };
+
   return (
     <div className="">
       <div className="flex items-center gap-4 mb-8">
@@ -40,7 +48,10 @@ const PostInfo = ({
       <p className="text-gray-400 text-lg mb-12">{text}</p>
       <div className="flex gap-4 mb-8">
         <button className="bg-gray-700 text-white flex gap-2 items-center rounded-full py-1.5 px-3">
-          <i className="fa-solid fa-angle-up text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-green-400 py-1 px-2"></i>
+          <i
+            onClick={handleUpvote}
+            className="fa-solid fa-angle-up text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-green-400 py-1 px-2"
+          ></i>
           <p className="text-xs">{votes}</p>
           <i className="fa-solid fa-angle-down text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-red-400 p-2"></i>
         </button>

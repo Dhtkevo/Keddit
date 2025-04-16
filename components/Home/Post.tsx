@@ -10,6 +10,14 @@ const Post = ({
   downVotes,
   commentsNum,
 }) => {
+  const handleUpvote = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    await fetch("http://localhost:3000/posts/" + postId + "/upvote", {
+      method: "PUT",
+    });
+  };
+
   return (
     <div className="border-b border-gray-800 h-fit flex flex-col py-1.5 px-4 gap-4 hover:shadow-md hover:shadow-gray-800 rounded-3xl">
       <div className="flex justify-between">
@@ -36,7 +44,10 @@ const Post = ({
       </Link>
       <div className="flex gap-4">
         <button className="bg-gray-700 text-white flex gap-2 items-center rounded-full py-1.5 px-3">
-          <i className="fa-solid fa-angle-up text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-green-400 p-2"></i>
+          <i
+            onClick={handleUpvote}
+            className="fa-solid fa-angle-up text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-green-400 p-2"
+          ></i>
           <p className="text-xs">{upVotes - downVotes}</p>
           <i className="fa-solid fa-angle-down text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-red-400 p-2"></i>
         </button>
