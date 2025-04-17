@@ -7,6 +7,12 @@ const NavigationBar = () => {
   const { user } = useContext(AuthContext);
   const [searchText, setSearchText] = useState("");
 
+  const handleClearSearch = (e: React.FormEvent<HTMLDivElement>) => {
+    e.preventDefault();
+
+    setSearchText("");
+  };
+
   return (
     <div className="bg-black h-16 border border-b-gray-700 flex justify-between items-center px-8 py-2 sticky top-0">
       <div className="flex h-full w-28 hover:cursor-pointer">
@@ -41,7 +47,10 @@ const NavigationBar = () => {
           placeholder="Search Keddit"
         />
         {searchText && (
-          <div className="text-white rounded-full w-10 h-full flex justify-center items-center text-xs hover:bg-gray-400 hover:cursor-pointer">
+          <div
+            onClick={handleClearSearch}
+            className="text-white rounded-full w-10 h-full flex justify-center items-center text-xs hover:bg-gray-400 hover:cursor-pointer"
+          >
             X
           </div>
         )}
