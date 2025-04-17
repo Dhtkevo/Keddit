@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { Link } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const NavigationBar = () => {
   const { user } = useContext(AuthContext);
+  const [searchText, setSearchText] = useState("");
 
   return (
     <div className="bg-black h-16 border border-b-gray-700 flex justify-between items-center px-8 py-2 sticky top-0">
@@ -35,11 +36,15 @@ const NavigationBar = () => {
           type="text"
           name="searchBar"
           className="rounded-4xl h-full grow px-1 text-white placeholder-gray-500 focus:outline-none"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
           placeholder="Search Keddit"
         />
-        <div className="text-white rounded-full w-10 h-full flex justify-center items-center text-xs hover:bg-gray-400 hover:cursor-pointer">
-          X
-        </div>
+        {searchText && (
+          <div className="text-white rounded-full w-10 h-full flex justify-center items-center text-xs hover:bg-gray-400 hover:cursor-pointer">
+            X
+          </div>
+        )}
       </div>
       <div className="text-gray-300 text-2xl flex items-center gap-6">
         <Link to="/discover">
