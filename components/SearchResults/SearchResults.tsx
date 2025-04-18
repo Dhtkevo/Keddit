@@ -1,30 +1,36 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import Post from "../Home/Post";
 
 const SearchResults = () => {
   const { user, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
+  const [matchedPosts, setMatchedPosts] = useState([]);
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:3000/auth/current_user",
-          {
+        const [response, response2] = await Promise.all([
+          fetch("http://localhost:3000/auth/current_user", {
             credentials: "include",
-          }
-        );
+          }),
+          fetch(
+            "http://localhost:3000/posts/search?" + searchParams.toString()
+          ),
+        ]);
 
         const data = await response.json();
+        const searchData = await response2.json();
 
         if (!response.ok) {
           throw new Error();
         }
 
         setUser(data);
+        setMatchedPosts(searchData);
         setLoading(false);
       } catch (err) {
         setUser(undefined);
@@ -33,18 +39,38 @@ const SearchResults = () => {
     };
 
     getUser();
-  }, []);
+  }, [searchParams]);
 
   if (loading) return null;
 
+  const displayPosts = matchedPosts.map((post) => {
+    return (
+      <Post
+        key={post.id}
+        postId={post.id}
+        userPic={post.user.avatarUrl}
+        username={post.user.username}
+        title={post.title}
+        upVotes={post.upVotes}
+        downVotes={post.downVotes}
+        commentsNum={post.comments.length}
+      />
+    );
+  });
+
   return (
     <div className="h-screen w-screen bg-gray-900 flex flex-col gap-4 items-center pt-4">
-      <h1 className="text-5xl text-gray-400">Search Results</h1>
+      <h1 className="text-5xl text-gray-400">
+        Search Results for '{searchParams.get("title")}'
+      </h1>
       <div className="h-full w-1/2 overflow-auto">
-        <h2 className="text-5xl/20 text-gray-200 font-bold text-center">
-          Nothing to see here...
-        </h2>
-        <Post />
+        {matchedPosts.length > 0 ? (
+          displayPosts
+        ) : (
+          <h2 className="mt-40 text-center text-7xl text-gray-600">
+            No matches found.
+          </h2>
+        )}
       </div>
     </div>
   );

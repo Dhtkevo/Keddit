@@ -17,6 +17,8 @@ const NavigationBar = () => {
   const handleSearchSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
+    if (searchText.length === 0) return;
+
     const params = new URLSearchParams();
     params.set("title", searchText);
     navigate("/search?" + params);
