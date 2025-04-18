@@ -1,16 +1,25 @@
 import React, { useContext, useState } from "react";
 
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 const NavigationBar = () => {
   const { user } = useContext(AuthContext);
   const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
 
   const handleClearSearch = (e: React.FormEvent<HTMLDivElement>) => {
     e.preventDefault();
 
     setSearchText("");
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    const params = new URLSearchParams();
+    params.set("title", searchText);
+    navigate("/search?" + params);
   };
 
   return (
@@ -36,8 +45,10 @@ const NavigationBar = () => {
         </div>
       </div>
 
-      <div className="bg-gray-900 rounded-4xl h-full w-112 flex items-center px-4 py-1 gap-2 group hover:bg-gray-700">
-        <i className="fa-solid fa-magnifying-glass h-fit text-white text-lg"></i>
+      <form className="bg-gray-900 rounded-4xl h-full w-112 flex items-center px-4 py-1 gap-2 group hover:bg-gray-700">
+        <button className="bg-none" onClick={handleSearchSubmit}>
+          <i className="fa-solid fa-magnifying-glass h-fit text-white text-lg"></i>
+        </button>
         <input
           type="text"
           name="searchBar"
@@ -54,7 +65,7 @@ const NavigationBar = () => {
             X
           </div>
         )}
-      </div>
+      </form>
       <div className="text-gray-300 text-2xl flex items-center gap-6">
         <Link to="/discover">
           <i className="fa-solid fa-users hover:cursor-pointer"></i>

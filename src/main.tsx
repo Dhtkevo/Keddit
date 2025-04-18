@@ -10,6 +10,7 @@ import CreatePostForm from "../components/CreatePostForm/CreatePostForm.tsx";
 import Login from "../components/Login/Login.tsx";
 import AuthProvider from "../components/AuthProvider/AuthProvider.tsx";
 import PostPage from "../components/PostPage/PostPage.tsx";
+import SearchResults from "../components/SearchResults/SearchResults.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -66,6 +67,15 @@ createRoot(document.getElementById("root")!).render(
           <AuthProvider>
             <NavigationBar />
             <PostPage />
+          </AuthProvider>
+        }
+      />
+      <Route
+        path="Search"
+        element={
+          <AuthProvider>
+            <NavigationBar />
+            <SearchResults />
           </AuthProvider>
         }
       />
