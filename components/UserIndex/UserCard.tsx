@@ -1,7 +1,55 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
 
 const UserCard = ({ username, avatarUrl, userId }) => {
+  const { user, setUser } = useContext(AuthContext);
+  const [following, setFollowing] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/users/check_following", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId: user.id, targetUserId: userId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data === null) {
+          setFollowing(false);
+        } else {
+          setFollowing(true);
+        }
+
+        setLoading(false);
+      });
+  }, []);
+
+  const handleFollow = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (userId === user.id) return;
+
+    await fetch(
+      following
+        ? "http://localhost:3000/users/unfollow"
+        : "http://localhost:3000/users/follow",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: user.id, targetUserId: userId }),
+      }
+    );
+
+    setFollowing((prev) => !prev);
+  };
+
+  if (loading) return null;
+
   return (
     <div className="border-b border-gray-700 h-32 flex justify-between items-center px-4 rounded-2xl hover:shadow-md hover:shadow-gray-700">
       <Link to={"/profile/" + userId}>
@@ -17,8 +65,15 @@ const UserCard = ({ username, avatarUrl, userId }) => {
           </h2>
         </div>
       </Link>
-      <button className="bg-blue-700 text-gray-300 py-2 px-12 rounded-full hover:cursor-pointer hover:bg-blue-600">
-        Follow
+      <button
+        onClick={handleFollow}
+        className={`${
+          !following
+            ? "bg-blue-700 hover:bg-blue-600"
+            : "bg-red-400 hover:bg-red-500 text-white"
+        } text-gray-300 py-2 px-12 rounded-full hover:cursor-pointer`}
+      >
+        {!following ? "Follow" : "Unfollow"}
       </button>
     </div>
   );
