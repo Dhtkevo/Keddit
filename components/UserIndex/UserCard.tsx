@@ -65,16 +65,18 @@ const UserCard = ({ username, avatarUrl, userId }) => {
           </h2>
         </div>
       </Link>
-      <button
-        onClick={handleFollow}
-        className={`${
-          !following
-            ? "bg-blue-700 hover:bg-blue-600"
-            : "bg-red-400 hover:bg-red-500 text-white"
-        } text-gray-300 py-2 px-12 rounded-full hover:cursor-pointer`}
-      >
-        {!following ? "Follow" : "Unfollow"}
-      </button>
+      {user.id !== userId && (
+        <button
+          onClick={handleFollow}
+          className={`${
+            !following
+              ? "bg-blue-700 hover:bg-blue-600"
+              : "bg-red-400 hover:bg-red-500 text-white"
+          } text-gray-300 py-2 px-12 rounded-full hover:cursor-pointer`}
+        >
+          {!following ? "Follow" : "Unfollow"}
+        </button>
+      )}
     </div>
   );
 };
