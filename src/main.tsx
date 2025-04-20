@@ -11,6 +11,7 @@ import Login from "../components/Login/Login.tsx";
 import AuthProvider from "../components/AuthProvider/AuthProvider.tsx";
 import PostPage from "../components/PostPage/PostPage.tsx";
 import SearchResults from "../components/SearchResults/SearchResults.tsx";
+import NotificationPage from "../components/NotificationPage/NotificationPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -76,6 +77,15 @@ createRoot(document.getElementById("root")!).render(
           <AuthProvider>
             <NavigationBar />
             <SearchResults />
+          </AuthProvider>
+        }
+      />
+      <Route
+        path="Notifications"
+        element={
+          <AuthProvider>
+            <NavigationBar />
+            <NotificationPage />
           </AuthProvider>
         }
       />
