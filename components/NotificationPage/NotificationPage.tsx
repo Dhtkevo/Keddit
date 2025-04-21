@@ -6,25 +6,28 @@ import NotificationCard from "./NotificationCard";
 const NotificationPage = () => {
   const { user, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
+  const [notifications, setNotifications] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:3000/auth/current_user",
-          {
+        const [response, response2] = await Promise.all([
+          fetch("http://localhost:3000/auth/current_user", {
             credentials: "include",
-          }
-        );
+          }),
+          fetch("http://localhost:3000/users/" + user.id + "/notifications"),
+        ]);
 
         const data = await response.json();
+        const notifs = await response2.json();
 
         if (!response.ok) {
           throw new Error();
         }
 
         setUser(data);
+        setNotifications(notifs);
         setLoading(false);
       } catch (err) {
         setUser(undefined);
@@ -37,16 +40,29 @@ const NotificationPage = () => {
 
   if (loading) return null;
 
+  const userNotifs = notifications.map((noti) => (
+    <NotificationCard
+      key={noti.id}
+      type={noti.type}
+      message={noti.message}
+      date={noti.createdAt}
+      isRead={noti.isRead}
+    />
+  ));
+
   return (
     <div className="h-screen w-screen bg-gray-900 flex flex-col gap-4 items-center pt-4">
       <h1 className="text-5xl text-gray-400">
         {user ? `${user.username}'s Notifications` : "Please Log In"}{" "}
       </h1>
       <div className="h-full w-1/2 overflow-auto">
-        <h2 className="text-5xl/20 text-gray-200 font-bold text-center">
-          You're all caught up!
-        </h2>
-        <NotificationCard />
+        {notifications.length > 0 ? (
+          userNotifs
+        ) : (
+          <h2 className="text-5xl/20 text-gray-200 font-bold text-center">
+            You're all caught up!
+          </h2>
+        )}
       </div>
     </div>
   );
