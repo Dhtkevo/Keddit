@@ -78,7 +78,9 @@ const NavigationBar = () => {
             <p className="text-lg">Create</p>
           </Link>
         </div>
-        <i className="fa-solid fa-bell hover:cursor-pointer"></i>
+        <Link to="/notifications">
+          <i className="fa-solid fa-bell hover:cursor-pointer"></i>
+        </Link>
         <div className="rounded-full h-max border border-gray-500 hover:cursor-pointer">
           <Link to={user ? `/profile/${user.id}` : "/profile"}>
             <img
