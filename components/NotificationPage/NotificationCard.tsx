@@ -1,8 +1,21 @@
-import React from "react";
+import React, { FormEvent, useContext } from "react";
 import { format } from "date-fns";
+import { AuthContext } from "../../context/AuthContext";
 
-const NotificationCard = ({ type, message, date, isRead }) => {
+const NotificationCard = ({ id, type, message, date }) => {
+  const { user } = useContext(AuthContext);
   const formattedDate = format(new Date(date), "MMM-dd-yyyy");
+
+  const handleDeleteNotification = async (
+    e: React.FormEvent<HTMLParagraphElement>
+  ) => {
+    e.preventDefault();
+
+    await fetch(
+      "http://localhost:3000/users/" + user.id + "/notifications/" + id,
+      { method: "DELETE" }
+    );
+  };
 
   return (
     <div className="bg-black border border-gray-500 rounded-2xl p-2 flex flex-col mb-4">
@@ -14,7 +27,10 @@ const NotificationCard = ({ type, message, date, isRead }) => {
         <h3 className="text-lg text-gray-300">{message}</h3>
       </div>
       <div className="flex gap-2 text-lg text-gray-400 self-end">
-        <p className="text-blue-300 hover:cursor-pointer hover:text-gray-400">
+        <p
+          onClick={handleDeleteNotification}
+          className="text-blue-300 hover:cursor-pointer hover:text-gray-400"
+        >
           Mark as Read
         </p>
       </div>

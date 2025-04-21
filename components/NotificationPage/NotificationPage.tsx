@@ -36,17 +36,17 @@ const NotificationPage = () => {
     };
 
     getUser();
-  }, []);
+  }, [notifications]);
 
   if (loading) return null;
 
   const userNotifs = notifications.map((noti) => (
     <NotificationCard
       key={noti.id}
+      id={noti.id}
       type={noti.type}
       message={noti.message}
       date={noti.createdAt}
-      isRead={noti.isRead}
     />
   ));
 
