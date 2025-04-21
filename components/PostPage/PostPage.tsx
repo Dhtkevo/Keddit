@@ -39,7 +39,7 @@ const PostPage = () => {
     };
 
     getUser();
-  }, []);
+  }, [targetPost]);
 
   if (loading) return null;
   if (!targetPost) {

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const PostInfo = ({
   postId,
@@ -10,6 +11,7 @@ const PostInfo = ({
   commentsNum,
   text,
 }) => {
+  const { user } = useContext(AuthContext);
   const [commentText, setCommentText] = useState("");
   const [votesState, setVotesState] = useState(votes);
 
@@ -20,7 +22,7 @@ const PostInfo = ({
       await fetch("http://localhost:3000/posts/" + postId + "/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ commentText: commentText, userId: userId }),
+        body: JSON.stringify({ commentText: commentText, userId: user.id }),
       });
 
       setCommentText("");
