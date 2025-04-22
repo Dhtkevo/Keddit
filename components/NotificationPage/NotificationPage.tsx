@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import NotificationCard from "./NotificationCard";
+import { NotificationType } from "../../types/types";
 
 const NotificationPage = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -42,7 +43,7 @@ const NotificationPage = () => {
 
   if (loading) return null;
 
-  const userNotifs = notifications.map((noti) => (
+  const userNotifs = notifications.map((noti: NotificationType) => (
     <NotificationCard
       key={noti.id}
       id={noti.id}

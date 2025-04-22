@@ -6,7 +6,7 @@ import PostInfo from "./PostInfo";
 import CommentCard from "./CommentCard";
 
 const PostPage = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [targetPost, setTargetPost] = useState(undefined);
   const { postId } = useParams();
@@ -33,13 +33,14 @@ const PostPage = () => {
         setTargetPost(targetData);
         setLoading(false);
       } catch (err) {
+        console.error(err);
         setUser(undefined);
         navigate("/login");
       }
     };
 
     getUser();
-  }, [targetPost]);
+  }, []);
 
   if (loading) return null;
   if (!targetPost) {

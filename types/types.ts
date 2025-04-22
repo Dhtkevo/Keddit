@@ -31,4 +31,9 @@ export interface CommentType {
 
 export interface NotificationType {
   id: number;
+  createdAt: string;
+  isRead: boolean;
+  message: string;
+  type: string;
+  userId: number;
 }
