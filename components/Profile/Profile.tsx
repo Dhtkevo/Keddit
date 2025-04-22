@@ -33,6 +33,7 @@ const Profile = () => {
         setTargetUser(targetData);
         setLoading(false);
       } catch (err) {
+        console.err(err);
         setUser(undefined);
         navigate("/login");
       }
@@ -58,7 +59,6 @@ const Profile = () => {
         userPic={targetUser.avatarUrl}
         username={targetUser.username}
         title={post.title}
-        text={post.text}
         upVotes={post.upVotes}
         downVotes={post.downVotes}
         commentsNum={post.comments.length}

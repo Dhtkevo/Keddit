@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
 
 const UserIndex = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
   const [allUsers, setAllUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -29,6 +29,7 @@ const UserIndex = () => {
         setUser(data);
         setLoading(false);
       } catch (err) {
+        console.error(err);
         setUser(undefined);
         navigate("/login");
       }

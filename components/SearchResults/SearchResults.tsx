@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import Post from "../Home/Post";
 
 const SearchResults = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [matchedPosts, setMatchedPosts] = useState([]);
   const navigate = useNavigate();
@@ -33,6 +33,7 @@ const SearchResults = () => {
         setMatchedPosts(searchData);
         setLoading(false);
       } catch (err) {
+        console.error(err);
         setUser(undefined);
         navigate("/login");
       }

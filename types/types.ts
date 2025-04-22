@@ -1,30 +1,34 @@
-export interface User {
+export interface UserType {
   id: number;
   username: string;
   githubId: string;
   avatarUrl: string;
   createdAt: string;
   notifications: Notification[];
-  post: Post[];
+  post: PostType[];
 }
 
-export interface Post {
+export interface PostType {
   id: number;
   text: string;
   createdAt: string;
   downVotes: number;
   upVotes: number;
   title: string;
-  user: User;
+  user: UserType;
   userId: number;
-  comments: Comment[];
+  comments: CommentType[];
 }
 
-export interface Comment {
+export interface CommentType {
   id: number;
   createdAt: string;
   postId: number;
   text: string;
-  user: User;
+  user: UserType;
   userId: number;
+}
+
+export interface NotificationType {
+  id: number;
 }

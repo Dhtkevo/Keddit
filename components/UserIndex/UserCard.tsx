@@ -2,8 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
-const UserCard = ({ username, avatarUrl, userId }) => {
-  const { user, setUser } = useContext(AuthContext);
+interface UserCardProps {
+  username: string;
+  avatarUrl: string;
+  userId: number;
+}
+
+const UserCard = ({ username, avatarUrl, userId }: UserCardProps) => {
+  const { user } = useContext(AuthContext);
   const [following, setFollowing] = useState(false);
   const [loading, setLoading] = useState(true);
 

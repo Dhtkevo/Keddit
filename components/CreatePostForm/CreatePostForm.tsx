@@ -12,6 +12,8 @@ const CreatePostForm = () => {
   const handleCreatePost = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
+    if (!user) return;
+
     const response = await fetch("http://localhost:3000/posts/", {
       method: "POST",
       headers: {
@@ -20,7 +22,7 @@ const CreatePostForm = () => {
       body: JSON.stringify({ title, text, userId: user.id }),
     });
 
-    navigate("/");
+    if (response.ok) navigate("/");
   };
 
   useEffect(() => {
@@ -42,6 +44,7 @@ const CreatePostForm = () => {
         setUser(data);
         setLoading(false);
       } catch (err) {
+        console.error(err);
         setUser(undefined);
         navigate("/login");
       }

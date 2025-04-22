@@ -1,7 +1,9 @@
+import React from "react";
 import { useContext, useEffect, useState } from "react";
 import Post from "./Post";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
+import { PostType } from "../../types/types";
 
 const Home = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -44,7 +46,7 @@ const Home = () => {
 
   if (loading) return null;
 
-  const releventPosts = feed.map((post) => (
+  const releventPosts = feed.map((post: PostType) => (
     <Post
       postId={post.id}
       key={post.id}

@@ -21,6 +21,7 @@ const NotificationPage = () => {
 
         const data = await response.json();
         const notifs = await response2.json();
+        console.log(notifs);
 
         if (!response.ok) {
           throw new Error();
@@ -30,13 +31,14 @@ const NotificationPage = () => {
         setNotifications(notifs);
         setLoading(false);
       } catch (err) {
+        console.error(err);
         setUser(undefined);
         navigate("/login");
       }
     };
 
     getUser();
-  }, [notifications]);
+  }, []);
 
   if (loading) return null;
 
