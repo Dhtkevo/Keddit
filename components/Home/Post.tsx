@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
 
+interface PostProps {
+  postId: number;
+  userPic: string;
+  username: string;
+  title: string;
+  upVotes: number;
+  downVotes: number;
+  commentsNum: number;
+}
+
 const Post = ({
   postId,
   userPic,
@@ -9,7 +19,7 @@ const Post = ({
   upVotes,
   downVotes,
   commentsNum,
-}) => {
+}: PostProps) => {
   const [votes, setVotes] = useState(upVotes - downVotes);
 
   const handleUpvote = async (e: React.FormEvent<HTMLButtonElement>) => {
@@ -58,15 +68,13 @@ const Post = ({
       </Link>
       <div className="flex gap-4">
         <button className="bg-gray-700 text-white flex gap-2 items-center rounded-full py-1.5 px-3">
-          <i
-            onClick={handleUpvote}
-            className="fa-solid fa-angle-up text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-green-400 p-2"
-          ></i>
+          <button onClick={handleUpvote} className="rounded-full">
+            <i className="fa-solid fa-angle-up text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-green-400 p-2"></i>
+          </button>
           <p className="text-xs">{votes}</p>
-          <i
-            onClick={handleDownvote}
-            className="fa-solid fa-angle-down text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-red-400 p-2"
-          ></i>
+          <button onClick={handleDownvote} className="rounded-full">
+            <i className="fa-solid fa-angle-down text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-red-400 p-2"></i>
+          </button>
         </button>
 
         <Link

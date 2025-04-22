@@ -27,6 +27,7 @@ const Home = () => {
         setUser(data);
         setLoading(false);
       } catch (err) {
+        console.error(err);
         setUser(undefined);
         navigate("/login");
       }
