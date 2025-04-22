@@ -7,7 +7,7 @@ import { UserType } from "../../types/types";
 
 const UserIndex = () => {
   const { setUser } = useContext(AuthContext);
-  const [allUsers, setAllUsers] = useState<UserType[] | undefined[]>([]);
+  const [allUsers, setAllUsers] = useState<UserType[] | []>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ const UserIndex = () => {
 
   if (loading) return null;
 
-  const displayUsers = allUsers.map((user) => (
+  const displayUsers = allUsers.map((user: UserType) => (
     <UserCard
       key={user.id}
       userId={user.id}
