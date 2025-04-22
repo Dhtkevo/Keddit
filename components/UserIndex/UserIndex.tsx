@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import UserCard from "../UserIndex/UserCard";
 import { AuthContext } from "../../context/AuthContext";

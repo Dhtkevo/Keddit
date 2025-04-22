@@ -1,5 +1,3 @@
-import React from "react";
-
 const Login = () => {
   async function loginWithGithub() {
     window.location.assign("http://localhost:3000/auth/github");

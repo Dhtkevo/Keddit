@@ -1,4 +1,3 @@
-import React from "react";
 import { UserType } from "../../types/types";
 
 interface ProfileHeaderProps {

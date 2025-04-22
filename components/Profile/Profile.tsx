@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import ProfileHeader from "../Profile/ProfileHeader";
 import Post from "../Home/Post";
