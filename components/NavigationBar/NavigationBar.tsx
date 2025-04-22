@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
@@ -6,7 +6,6 @@ import { AuthContext } from "../../context/AuthContext";
 const NavigationBar = () => {
   const { user } = useContext(AuthContext);
   const [searchText, setSearchText] = useState("");
-  const [unReadNotis, setUnReadNotis] = useState(false);
   const navigate = useNavigate();
 
   const handleClearSearch = (e: React.FormEvent<HTMLDivElement>) => {
@@ -82,8 +81,10 @@ const NavigationBar = () => {
         <Link to="/notifications">
           <i
             className={`fa-solid fa-bell hover:cursor-pointer ${
-              user && user.notifications.length > 0 && "text-red-300"
-            } ${"text-yellow-200animate-bounce"}`}
+              user &&
+              user.notifications.length > 0 &&
+              "text-yellow-200 animate-bounce"
+            } `}
           ></i>
         </Link>
         <div className="rounded-full h-max border border-gray-500 hover:cursor-pointer">
