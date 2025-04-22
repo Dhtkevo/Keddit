@@ -14,6 +14,17 @@ const NavigationBar = () => {
     setSearchText("");
   };
 
+  const handleLogOut = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    fetch("http://localhost:3000/auth/logout", {
+      method: "DELETE",
+      credentials: "include",
+    }).then((response) => {
+      if (response.ok) navigate("/login");
+    });
+  };
+
   const handleSearchSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -98,6 +109,12 @@ const NavigationBar = () => {
             />
           </Link>
         </div>
+        <button
+          onClick={handleLogOut}
+          className="rounded-3xl bg-red-400 text-white text-sm px-2 py-2 hover:bg-red-300 hover:cursor-pointer"
+        >
+          Sign Out
+        </button>
       </div>
     </div>
   );
