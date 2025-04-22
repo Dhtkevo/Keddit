@@ -17,7 +17,7 @@ const NotificationPage = () => {
           fetch("http://localhost:3000/auth/current_user", {
             credentials: "include",
           }),
-          fetch("http://localhost:3000/users/" + user.id + "/notifications"),
+          fetch("http://localhost:3000/users/" + user?.id + "/notifications"),
         ]);
 
         const data = await response.json();

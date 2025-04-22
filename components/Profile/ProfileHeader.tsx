@@ -1,6 +1,11 @@
 import React from "react";
+import { UserType } from "../../types/types";
 
-const ProfileHeader = ({ user }) => {
+interface ProfileHeaderProps {
+  user: UserType;
+}
+
+const ProfileHeader = ({ user }: ProfileHeaderProps) => {
   return (
     <div className="border-b border-gray-700 h-52 flex flex-col">
       <div className="flex items-center gap-4">

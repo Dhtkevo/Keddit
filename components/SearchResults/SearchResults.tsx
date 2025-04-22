@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import Post from "../Home/Post";
+import { PostType } from "../../types/types";
 
 const SearchResults = () => {
   const { setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [matchedPosts, setMatchedPosts] = useState([]);
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     const getUser = async () => {
@@ -44,7 +45,7 @@ const SearchResults = () => {
 
   if (loading) return null;
 
-  const displayPosts = matchedPosts.map((post) => {
+  const displayPosts = matchedPosts.map((post: PostType) => {
     return (
       <Post
         key={post.id}

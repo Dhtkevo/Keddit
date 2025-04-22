@@ -2,13 +2,27 @@ import React, { useContext } from "react";
 import { format } from "date-fns";
 import { AuthContext } from "../../context/AuthContext";
 
-const NotificationCard = ({ id, type, message, date }) => {
+interface NotificationCardProps {
+  id: number;
+  type: string;
+  message: string;
+  date: string;
+}
+
+const NotificationCard = ({
+  id,
+  type,
+  message,
+  date,
+}: NotificationCardProps) => {
   const { user } = useContext(AuthContext);
   const formattedDate = format(new Date(date), "MMM-dd-yyyy");
 
   const handleDeleteNotification = async (
     e: React.FormEvent<HTMLParagraphElement>
   ) => {
+    if (!user) return;
+
     e.preventDefault();
 
     await fetch(

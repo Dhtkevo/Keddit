@@ -4,11 +4,12 @@ import ProfileHeader from "../Profile/ProfileHeader";
 import Post from "../Home/Post";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate, useParams } from "react-router";
+import { PostType, UserType } from "../../types/types";
 
 const Profile = () => {
   const { user, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
-  const [targetUser, setTargetUser] = useState(undefined);
+  const [targetUser, setTargetUser] = useState<UserType | undefined>(undefined);
   const { userId } = useParams();
   const navigate = useNavigate();
 
@@ -33,7 +34,7 @@ const Profile = () => {
         setTargetUser(targetData);
         setLoading(false);
       } catch (err) {
-        console.err(err);
+        console.error(err);
         setUser(undefined);
         navigate("/login");
       }
@@ -51,7 +52,7 @@ const Profile = () => {
     );
   }
 
-  const userPosts = targetUser.post.map((post) => {
+  const userPosts = targetUser.post.map((post: PostType) => {
     return (
       <Post
         postId={post.id}
@@ -77,7 +78,7 @@ const Profile = () => {
             <h2 className="text-5xl/20 text-gray-200 font-bold text-center">
               Nothing to see here...
             </h2>
-            {user.id == userId && (
+            {user?.id == userId && (
               <h3 className="text-3xl/20 text-gray-200 font-bold">
                 Create a post or follow some users to get things jumping!
               </h3>

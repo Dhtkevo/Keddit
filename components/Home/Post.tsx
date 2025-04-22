@@ -67,7 +67,7 @@ const Post = ({
         </h2>
       </Link>
       <div className="flex gap-4">
-        <button className="bg-gray-700 text-white flex gap-2 items-center rounded-full py-1.5 px-3">
+        <div className="bg-gray-700 text-white flex gap-2 items-center rounded-full py-1.5 px-3">
           <button onClick={handleUpvote} className="rounded-full">
             <i className="fa-solid fa-angle-up text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-green-400 p-2"></i>
           </button>
@@ -75,7 +75,7 @@ const Post = ({
           <button onClick={handleDownvote} className="rounded-full">
             <i className="fa-solid fa-angle-down text-lg hover:cursor-pointer hover:bg-gray-500 rounded-full hover:text-red-400 p-2"></i>
           </button>
-        </button>
+        </div>
 
         <Link
           to={"/posts/" + postId}

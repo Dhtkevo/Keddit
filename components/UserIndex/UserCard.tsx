@@ -19,7 +19,7 @@ const UserCard = ({ username, avatarUrl, userId }: UserCardProps) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userId: user.id, targetUserId: userId }),
+      body: JSON.stringify({ userId: user?.id, targetUserId: userId }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -36,7 +36,7 @@ const UserCard = ({ username, avatarUrl, userId }: UserCardProps) => {
   const handleFollow = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    if (userId === user.id) return;
+    if (userId === user?.id) return;
 
     await fetch(
       following
@@ -47,7 +47,7 @@ const UserCard = ({ username, avatarUrl, userId }: UserCardProps) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: user.id, targetUserId: userId }),
+        body: JSON.stringify({ userId: user?.id, targetUserId: userId }),
       }
     );
 
@@ -71,7 +71,7 @@ const UserCard = ({ username, avatarUrl, userId }: UserCardProps) => {
           </h2>
         </div>
       </Link>
-      {user.id !== userId && (
+      {user?.id !== userId && (
         <button
           onClick={handleFollow}
           className={`${

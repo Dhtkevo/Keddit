@@ -4,11 +4,12 @@ import { AuthContext } from "../../context/AuthContext";
 import { useNavigate, useParams } from "react-router";
 import PostInfo from "./PostInfo";
 import CommentCard from "./CommentCard";
+import { CommentType, PostType } from "../../types/types";
 
 const PostPage = () => {
   const { setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
-  const [targetPost, setTargetPost] = useState(undefined);
+  const [targetPost, setTargetPost] = useState<PostType | undefined>(undefined);
   const { postId } = useParams();
   const navigate = useNavigate();
 
@@ -50,7 +51,7 @@ const PostPage = () => {
       </div>
     );
   }
-  const allComments = targetPost.comments.map((comment) => (
+  const allComments = targetPost.comments.map((comment: CommentType) => (
     <CommentCard
       key={comment.id}
       userId={comment.user.id}

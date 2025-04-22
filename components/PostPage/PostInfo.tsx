@@ -28,6 +28,8 @@ const PostInfo = ({
   const handleCreateComment = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
+    if (!user) return;
+
     if (commentText.length > 0) {
       await fetch("http://localhost:3000/posts/" + postId + "/comments", {
         method: "POST",

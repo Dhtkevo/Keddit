@@ -3,10 +3,11 @@ import React, { useContext, useEffect, useState } from "react";
 import UserCard from "../UserIndex/UserCard";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
+import { UserType } from "../../types/types";
 
 const UserIndex = () => {
   const { setUser } = useContext(AuthContext);
-  const [allUsers, setAllUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState<UserType[] | undefined[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 

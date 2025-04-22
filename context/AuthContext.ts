@@ -1,9 +1,9 @@
 import { createContext } from "react";
-import { User } from "../types/types";
+import { UserType } from "../types/types";
 
 interface AuthContextTypes {
-  user: User | undefined;
-  setUser: (user: User | undefined) => void;
+  user: UserType | undefined;
+  setUser: (user: UserType | undefined) => void;
 }
 
 export const AuthContext = createContext<AuthContextTypes>({
