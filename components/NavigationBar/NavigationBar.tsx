@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 const NavigationBar = () => {
   const { user } = useContext(AuthContext);
   const [searchText, setSearchText] = useState("");
+  const [unReadNotis, setUnReadNotis] = useState(false);
   const navigate = useNavigate();
 
   const handleClearSearch = (e: React.FormEvent<HTMLDivElement>) => {
@@ -79,7 +80,11 @@ const NavigationBar = () => {
           </Link>
         </div>
         <Link to="/notifications">
-          <i className="fa-solid fa-bell hover:cursor-pointer"></i>
+          <i
+            className={`fa-solid fa-bell hover:cursor-pointer ${
+              user && user.notifications.length > 0 && "text-red-300"
+            } ${"text-yellow-200animate-bounce"}`}
+          ></i>
         </Link>
         <div className="rounded-full h-max border border-gray-500 hover:cursor-pointer">
           <Link to={user ? `/profile/${user.id}` : "/profile"}>
