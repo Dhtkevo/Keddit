@@ -7,7 +7,7 @@ const Login = () => {
     <div className="h-screen bg-black flex">
       <div className=" w-1/2">
         <img
-          src="../../src/assets/Keddit_Logo_Text.png"
+          src="../../public/assets/Keddit_Logo_Text.png"
           alt="Keddit Logo text"
           className="h-full w-fit object-cover"
         />
