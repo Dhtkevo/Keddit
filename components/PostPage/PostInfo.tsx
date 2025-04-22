@@ -1,16 +1,26 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
+interface PostInfoProps {
+  postId: number;
+  userId?: number;
+  title: string;
+  username: string;
+  avatarUrl: string;
+  votes: number;
+  commentsNum: number;
+  text: string;
+}
+
 const PostInfo = ({
   postId,
-  userId,
   title,
   username,
   avatarUrl,
   votes,
   commentsNum,
   text,
-}) => {
+}: PostInfoProps) => {
   const { user } = useContext(AuthContext);
   const [commentText, setCommentText] = useState("");
   const [votesState, setVotesState] = useState(votes);
@@ -29,7 +39,7 @@ const PostInfo = ({
     }
   };
 
-  const handleUpvote = async (e: React.FormEvent<HTMLButtonElement>) => {
+  const handleUpvote = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
 
     await fetch("http://localhost:3000/posts/" + postId + "/upvote", {
@@ -39,7 +49,7 @@ const PostInfo = ({
     setVotesState((prev) => prev + 1);
   };
 
-  const handleDownvote = async (e: React.FormEvent<HTMLButtonElement>) => {
+  const handleDownvote = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
 
     await fetch("http://localhost:3000/posts/" + postId + "/downvote", {

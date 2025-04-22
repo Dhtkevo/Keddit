@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router";
 
-const CommentCard = ({ userId, text, username, avatar }) => {
+interface CommentCardProps {
+  userId: number;
+  text: string;
+  username: string;
+  avatar: string;
+}
+
+const CommentCard = ({ userId, text, username, avatar }: CommentCardProps) => {
   return (
     <div className="rounded-2xl border border-gray-700 px-2 mb-2 pt-2">
       <div className="flex items-center gap-2 mb-4">
