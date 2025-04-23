@@ -15,11 +15,13 @@ const SearchResults = () => {
     const getUser = async () => {
       try {
         const [response, response2] = await Promise.all([
-          fetch("http://localhost:3000/auth/current_user", {
+          fetch(import.meta.env.VITE_BASE_URL + "/auth/current_user", {
             credentials: "include",
           }),
           fetch(
-            "http://localhost:3000/posts/search?" + searchParams.toString()
+            import.meta.env.VITE_BASE_URL +
+              "/posts/search?" +
+              searchParams.toString()
           ),
         ]);
 

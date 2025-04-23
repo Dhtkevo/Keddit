@@ -14,7 +14,7 @@ const Home = () => {
     const getUser = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/auth/current_user",
+          import.meta.env.VITE_BASE_URL + "/auth/current_user",
           {
             credentials: "include",
           }
@@ -37,7 +37,7 @@ const Home = () => {
     getUser();
 
     if (user) {
-      fetch("http://localhost:3000/users/" + user.id + "/feed")
+      fetch(import.meta.env.VITE_BASE_URL + "/users/" + user.id + "/feed")
         .then((response) => response.json())
         .then((data) => setFeed(data));
     }

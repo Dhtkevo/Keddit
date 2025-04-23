@@ -17,10 +17,10 @@ const Profile = () => {
     const getUser = async () => {
       try {
         const [response, response2] = await Promise.all([
-          fetch("http://localhost:3000/auth/current_user", {
+          fetch(import.meta.env.VITE_BASE_URL + "/auth/current_user", {
             credentials: "include",
           }),
-          fetch("http://localhost:3000/users/" + userId),
+          fetch(import.meta.env.VITE_BASE_URL + "/users/" + userId),
         ]);
 
         const data = await response.json();

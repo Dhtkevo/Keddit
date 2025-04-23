@@ -15,7 +15,7 @@ const UserIndex = () => {
     const getUser = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/auth/current_user",
+          import.meta.env.VITE_BASE_URL + "/auth/current_user",
           {
             credentials: "include",
           }
@@ -36,7 +36,7 @@ const UserIndex = () => {
       }
     };
 
-    fetch("http://localhost:3000/users/")
+    fetch(import.meta.env.VITE_BASE_URL + "/users/")
       .then((response) => response.json())
       .then((data) => setAllUsers(data));
 

@@ -14,10 +14,15 @@ const NotificationPage = () => {
     const getUser = async () => {
       try {
         const [response, response2] = await Promise.all([
-          fetch("http://localhost:3000/auth/current_user", {
+          fetch(import.meta.env.VITE_BASE_URL + "/auth/current_user", {
             credentials: "include",
           }),
-          fetch("http://localhost:3000/users/" + user?.id + "/notifications"),
+          fetch(
+            import.meta.env.VITE_BASE_URL +
+              "/users/" +
+              user?.id +
+              "/notifications"
+          ),
         ]);
 
         const data = await response.json();

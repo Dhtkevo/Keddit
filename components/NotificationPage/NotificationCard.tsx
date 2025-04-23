@@ -26,7 +26,11 @@ const NotificationCard = ({
     e.preventDefault();
 
     await fetch(
-      "http://localhost:3000/users/" + user.id + "/notifications/" + id,
+      import.meta.env.VITE_BASE_URL +
+        "/users/" +
+        user.id +
+        "/notifications/" +
+        id,
       { method: "DELETE" }
     );
   };

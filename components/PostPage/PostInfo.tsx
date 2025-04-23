@@ -31,11 +31,14 @@ const PostInfo = ({
     if (!user) return;
 
     if (commentText.length > 0) {
-      await fetch("http://localhost:3000/posts/" + postId + "/comments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ commentText: commentText, userId: user.id }),
-      });
+      await fetch(
+        import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/comments",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ commentText: commentText, userId: user.id }),
+        }
+      );
 
       setCommentText("");
     }
@@ -44,9 +47,12 @@ const PostInfo = ({
   const handleUpvote = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
 
-    await fetch("http://localhost:3000/posts/" + postId + "/upvote", {
-      method: "PUT",
-    });
+    await fetch(
+      import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/upvote",
+      {
+        method: "PUT",
+      }
+    );
 
     setVotesState((prev) => prev + 1);
   };
@@ -54,9 +60,12 @@ const PostInfo = ({
   const handleDownvote = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
 
-    await fetch("http://localhost:3000/posts/" + postId + "/downvote", {
-      method: "PUT",
-    });
+    await fetch(
+      import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/downvote",
+      {
+        method: "PUT",
+      }
+    );
 
     setVotesState((prev) => prev - 1);
   };

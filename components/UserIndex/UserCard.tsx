@@ -14,7 +14,7 @@ const UserCard = ({ username, avatarUrl, userId }: UserCardProps) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/check_following", {
+    fetch(import.meta.env.VITE_BASE_URL + "/users/check_following", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,8 +40,8 @@ const UserCard = ({ username, avatarUrl, userId }: UserCardProps) => {
 
     await fetch(
       following
-        ? "http://localhost:3000/users/unfollow"
-        : "http://localhost:3000/users/follow",
+        ? import.meta.env.VITE_BASE_URL + "/users/unfollow"
+        : import.meta.env.VITE_BASE_URL + "/users/follow",
       {
         method: "POST",
         headers: {

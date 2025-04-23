@@ -17,7 +17,7 @@ const NavigationBar = () => {
   const handleLogOut = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    fetch("http://localhost:3000/auth/logout", {
+    fetch(import.meta.env.VITE_BASE_URL + "/auth/logout", {
       method: "DELETE",
       credentials: "include",
     }).then((response) => {

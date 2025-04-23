@@ -25,9 +25,12 @@ const Post = ({
   const handleUpvote = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    await fetch("http://localhost:3000/posts/" + postId + "/upvote", {
-      method: "PUT",
-    });
+    await fetch(
+      import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/upvote",
+      {
+        method: "PUT",
+      }
+    );
 
     setVotes((prev) => prev + 1);
   };
@@ -35,9 +38,12 @@ const Post = ({
   const handleDownvote = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    await fetch("http://localhost:3000/posts/" + postId + "/downvote", {
-      method: "PUT",
-    });
+    await fetch(
+      import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/downvote",
+      {
+        method: "PUT",
+      }
+    );
 
     setVotes((prev) => prev - 1);
   };

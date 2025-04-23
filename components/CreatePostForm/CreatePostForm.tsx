@@ -14,7 +14,7 @@ const CreatePostForm = () => {
 
     if (!user) return;
 
-    const response = await fetch("http://localhost:3000/posts/", {
+    const response = await fetch(import.meta.env.VITE_BASE_URL + "/posts/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +29,7 @@ const CreatePostForm = () => {
     const getUser = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/auth/current_user",
+          import.meta.env.VITE_BASE_URL + "/auth/current_user",
           {
             credentials: "include",
           }

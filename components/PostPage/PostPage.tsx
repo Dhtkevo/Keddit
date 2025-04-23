@@ -17,10 +17,10 @@ const PostPage = () => {
     const getUser = async () => {
       try {
         const [response, response2] = await Promise.all([
-          fetch("http://localhost:3000/auth/current_user", {
+          fetch(import.meta.env.VITE_BASE_URL + "/auth/current_user", {
             credentials: "include",
           }),
-          fetch("http://localhost:3000/posts/" + postId),
+          fetch(import.meta.env.VITE_BASE_URL + "/posts/" + postId),
         ]);
 
         const data = await response.json();

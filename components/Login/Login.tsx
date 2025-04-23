@@ -1,6 +1,6 @@
 const Login = () => {
   async function loginWithGithub() {
-    window.location.assign("http://localhost:3000/auth/github");
+    window.location.assign(import.meta.env.VITE_BASE_URL + "/auth/github");
   }
 
   return (
