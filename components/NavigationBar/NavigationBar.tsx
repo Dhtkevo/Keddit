@@ -41,7 +41,7 @@ const NavigationBar = () => {
         <div className="h-full w-14">
           <Link to="/">
             <img
-              src="../../src/assets/Keddit_Logo_No_Text.png"
+              src="/assets/Keddit_Logo_No_Text.png"
               alt="Keddit Logo"
               className="object-cover h-full w-full"
             />
@@ -50,7 +50,7 @@ const NavigationBar = () => {
         <div className="h-full w-14">
           <Link to="/">
             <img
-              src="../../src/assets/Keddit_Text.png"
+              src="/assets/Keddit_Text.png"
               alt="Keddit Logo Text"
               className="object-cover h-full w-full"
             />
