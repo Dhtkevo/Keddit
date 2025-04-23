@@ -101,9 +101,7 @@ const NavigationBar = () => {
         <div className="rounded-full h-max border border-gray-500 hover:cursor-pointer">
           <Link to={user ? `/profile/${user.id}` : "/profile"}>
             <img
-              src={
-                user ? user.avatarUrl : "../../src/assets/Keddit_Logo_Text.png"
-              }
+              src={user ? user.avatarUrl : "/assets/Keddit_Logo_Text.png"}
               alt="Profile Photo"
               className="h-8 w-12 rounded-full object-cover"
             />
