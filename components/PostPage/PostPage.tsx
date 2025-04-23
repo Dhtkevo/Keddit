@@ -20,7 +20,9 @@ const PostPage = () => {
           fetch(import.meta.env.VITE_BASE_URL + "/auth/current_user", {
             credentials: "include",
           }),
-          fetch(import.meta.env.VITE_BASE_URL + "/posts/" + postId),
+          fetch(import.meta.env.VITE_BASE_URL + "/posts/" + postId, {
+            credentials: "include",
+          }),
         ]);
 
         const data = await response.json();

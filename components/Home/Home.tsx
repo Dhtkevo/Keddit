@@ -37,7 +37,9 @@ const Home = () => {
     getUser();
 
     if (user) {
-      fetch(import.meta.env.VITE_BASE_URL + "/users/" + user.id + "/feed")
+      fetch(import.meta.env.VITE_BASE_URL + "/users/" + user.id + "/feed", {
+        credentials: "include",
+      })
         .then((response) => response.json())
         .then((data) => setFeed(data));
     }

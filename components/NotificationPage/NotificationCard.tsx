@@ -31,7 +31,7 @@ const NotificationCard = ({
         user.id +
         "/notifications/" +
         id,
-      { method: "DELETE" }
+      { method: "DELETE", credentials: "include" }
     );
   };
 

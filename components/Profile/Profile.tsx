@@ -20,7 +20,9 @@ const Profile = () => {
           fetch(import.meta.env.VITE_BASE_URL + "/auth/current_user", {
             credentials: "include",
           }),
-          fetch(import.meta.env.VITE_BASE_URL + "/users/" + userId),
+          fetch(import.meta.env.VITE_BASE_URL + "/users/" + userId, {
+            credentials: "include",
+          }),
         ]);
 
         const data = await response.json();

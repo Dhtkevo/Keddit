@@ -36,7 +36,7 @@ const UserIndex = () => {
       }
     };
 
-    fetch(import.meta.env.VITE_BASE_URL + "/users/")
+    fetch(import.meta.env.VITE_BASE_URL + "/users/", { credentials: "include" })
       .then((response) => response.json())
       .then((data) => setAllUsers(data));
 

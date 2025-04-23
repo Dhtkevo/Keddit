@@ -19,6 +19,7 @@ const CreatePostForm = () => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({ title, text, userId: user.id }),
     });
 

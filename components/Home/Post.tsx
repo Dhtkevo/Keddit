@@ -29,6 +29,7 @@ const Post = ({
       import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/upvote",
       {
         method: "PUT",
+        credentials: "include",
       }
     );
 
@@ -42,6 +43,7 @@ const Post = ({
       import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/downvote",
       {
         method: "PUT",
+        credentials: "include",
       }
     );
 

@@ -36,6 +36,7 @@ const PostInfo = ({
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
           body: JSON.stringify({ commentText: commentText, userId: user.id }),
         }
       );
@@ -51,6 +52,7 @@ const PostInfo = ({
       import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/upvote",
       {
         method: "PUT",
+        credentials: "include",
       }
     );
 
@@ -64,6 +66,7 @@ const PostInfo = ({
       import.meta.env.VITE_BASE_URL + "/posts/" + postId + "/downvote",
       {
         method: "PUT",
+        credentials: "include",
       }
     );
 

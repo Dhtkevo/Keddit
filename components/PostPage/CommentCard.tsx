@@ -12,7 +12,7 @@ const CommentCard = ({ userId, text, username, avatar }: CommentCardProps) => {
     <div className="rounded-2xl border border-gray-700 px-2 mb-2 pt-2">
       <div className="flex items-center gap-2 mb-4">
         <img
-          src={avatar ? avatar : "../../src/assets/Keddit_Logo_Text.png"}
+          src={avatar ? avatar : "/assets/Keddit_Logo_Text.png"}
           alt="comment profile picture"
           className="h-8 w-8 rounded-full"
         />

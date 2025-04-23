@@ -21,7 +21,8 @@ const SearchResults = () => {
           fetch(
             import.meta.env.VITE_BASE_URL +
               "/posts/search?" +
-              searchParams.toString()
+              searchParams.toString(),
+            { credentials: "include" }
           ),
         ]);
 

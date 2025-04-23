@@ -21,7 +21,8 @@ const NotificationPage = () => {
             import.meta.env.VITE_BASE_URL +
               "/users/" +
               user?.id +
-              "/notifications"
+              "/notifications",
+            { credentials: "include" }
           ),
         ]);
 

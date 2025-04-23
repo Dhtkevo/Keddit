@@ -16,6 +16,7 @@ const UserCard = ({ username, avatarUrl, userId }: UserCardProps) => {
   useEffect(() => {
     fetch(import.meta.env.VITE_BASE_URL + "/users/check_following", {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -47,6 +48,7 @@ const UserCard = ({ username, avatarUrl, userId }: UserCardProps) => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ userId: user?.id, targetUserId: userId }),
       }
     );
