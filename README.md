@@ -44,7 +44,7 @@ manage the database relations.
 
 ## 🧪 How to Run Locally (Project currently not set-up for local execution)
 
-\`\`\`bash
+```bash
 # Clone the repo
 git clone https://github.com/Dhtkevo/Keddit.git
 cd keddit
@@ -57,7 +57,7 @@ Add Environment Variable(s) for Port and potentially PostegreSQL database
 
 # Start the development server
 npm run dev
-\`\`\`
+```
 
 
 ## 📝 Future Improvements
