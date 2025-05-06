@@ -4,6 +4,8 @@
 
 ## 🚀 Project Overview
 
+Live Demo: [Keddit Live](https://keddit-psi.vercel.app/)
+
 Keddit is a full-stack social media site that is heavily inspired by Reddit and X.com. I built this project because I wanted to work on key programming skills and technologies such
 as complex problem-solving, TypeScript, Third-Party OAuth, and project management. I also utilized Express for the backend Rest API and Prisma ORM + PostegreSQL to 
 manage the database relations.
